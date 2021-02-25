@@ -5,68 +5,72 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Restaurant | Template </title>
     <meta name="description" content="">
+    <title>{{title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.html">
-    <link rel="shortcut icon" type="image/x-icon" href="{%static front/%}img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{%static 'front/'%}img/favicon.ico">
 
-    <link rel="stylesheet" href="{%static front/%}css/bootstrap.min.css">
-    <link rel="stylesheet" href="{%static front/%}css/owl.carousel.min.css">
-    <link rel="stylesheet" href="{%static front/%}css/slicknav.css">
-    <link rel="stylesheet" href="{%static front/%}css/flaticon.css">
-    <link rel="stylesheet" href="{%static front/%}css/gijgo.css">
-    <link rel="stylesheet" href="{%static front/%}css/animate.min.css">
-    <link rel="stylesheet" href="{%static front/%}css/magnific-popup.css">
-    <link rel="stylesheet" href="{%static front/%}css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="{%static front/%}css/themify-icons.css">
-    <link rel="stylesheet" href="{%static front/%}css/slick.css">
-    <link rel="stylesheet" href="{%static front/%}css/nice-select.css">
-    <link rel="stylesheet" href="{%static front/%}css/style.css">
-    <title>{{title}}</title>
+    <link rel="stylesheet" href="{%static 'front/'%}css/bootstrap.min.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/slicknav.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/flaticon.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/gijgo.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/animate.min.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/magnific-popup.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/themify-icons.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/slick.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/nice-select.css">
+    <link rel="stylesheet" href="{%static 'front/'%}css/style.css">
+
 </head>
 
 <body>
     {%include 'preloader.html'%}
     <!-- preloader will load everytime we load the screen -->
+    {%include 'navbar.html'%}
+    <!-- navbar loaded -->
     {%block main_content%}
     <!-- main block created -->
+
     <!-- contents will be added here -->
     {%endblock main_content%}
     <!-- main ends here -->
+    {%include 'footer.html'%}
     <!-- here will be our default scripts -->
 
     <div id="back-top">
         <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
-    <script src="{%static front/%}js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="{%static 'front/'%}js/vendor/modernizr-3.5.0.min.js"></script>
 
-    <script src="{%static front/%}js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="{%static front/%}js/popper.min.js"></script>
-    <script src="{%static front/%}js/bootstrap.min.js"></script>
+    <script src="{%static 'front/'%}js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="{%static 'front/'%}js/popper.min.js"></script>
+    <script src="{%static 'front/'%}js/bootstrap.min.js"></script>
 
-    <script src="{%static front/%}js/jquery.slicknav.min.js"></script>
+    <script src="{%static 'front/'%}js/jquery.slicknav.min.js"></script>
 
-    <script src="{%static front/%}js/owl.carousel.min.js"></script>
-    <script src="{%static front/%}js/slick.min.js"></script>
+    <script src="{%static 'front/'%}js/owl.carousel.min.js"></script>
+    <script src="{%static 'front/'%}js/slick.min.js"></script>
 
-    <script src="{%static front/%}js/wow.min.js"></script>
-    <script src="{%static front/%}js/animated.headline.js"></script>
-    <script src="{%static front/%}js/jquery.magnific-popup.js"></script>
+    <script src="{%static 'front/'%}js/wow.min.js"></script>
+    <script src="{%static 'front/'%}js/animated.headline.js"></script>
+    <script src="{%static 'front/'%}js/jquery.magnific-popup.js"></script>
 
-    <script src="{%static front/%}js/gijgo.min.js"></script>
+    <script src="{%static 'front/'%}js/gijgo.min.js"></script>
 
-    <script src="{%static front/%}js/jquery.nice-select.min.js"></script>
-    <script src="{%static front/%}js/jquery.sticky.js"></script>
+    <script src="{%static 'front/'%}js/jquery.nice-select.min.js"></script>
+    <script src="{%static 'front/'%}js/jquery.sticky.js"></script>
 
-    <script src="{%static front/%}js/contact.js"></script>
-    <script src="{%static front/%}js/jquery.form.js"></script>
-    <script src="{%static front/%}js/jquery.validate.min.js"></script>
-    <script src="{%static front/%}js/mail-script.js"></script>
-    <script src="{%static front/%}js/jquery.ajaxchimp.min.js"></script>
+    <script src="{%static 'front/'%}js/contact.js"></script>
+    <script src="{%static 'front/'%}js/jquery.form.js"></script>
+    <script src="{%static 'front/'%}js/jquery.validate.min.js"></script>
+    <script src="{%static 'front/'%}js/mail-script.js"></script>
+    <script src="{%static 'front/'%}js/jquery.ajaxchimp.min.js"></script>
 
-    <script src="{%static front/%}js/plugins.js"></script>
-    <script src="{%static front/%}js/main.js"></script>
+    <script src="{%static 'front/'%}js/plugins.js"></script>
+    <script src="{%static 'front/'%}js/main.js"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script>

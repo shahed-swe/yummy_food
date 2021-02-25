@@ -20,13 +20,17 @@
                                         <li><a href="{%url 'home'%}">Home</a></li>
                                         <li><a href="about.html">About</a></li>
                                         <li><a href="menu.html">Menu</a></li>
-                                        <li><a href="blog.html">Blog</a>
+                                        {%if user.is_authenticated%}
+                                        <li><a href="blog.html">{{user.first_name}}</a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="blog_details.html">Blog Details</a></li>
-                                                <li><a href="elements.html">Element</a></li>
+                                                <li><a href="blog.html">Profile</a></li>
+                                                <li><a href="blog_details.html">Edit Profile</a></li>
+                                                <li><a href="elements.html">Logout</a></li>
                                             </ul>
                                         </li>
+                                        {%else%}
+                                        <li><a href="menu.html">Login / Registration</a></li>
+                                        {%endif%}
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>

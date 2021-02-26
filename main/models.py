@@ -13,7 +13,6 @@ class User(AbstractUser):
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True, related_name="customer_user")
     full_name = models.CharField(max_length=100, blank=True, null=True)
-    age = models.CharField(max_length=100, blank=True, null=True)
     phone_no = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:

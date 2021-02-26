@@ -1,12 +1,15 @@
-{% extends 'base.html' %}
+{%extends 'base.html' %}
 <!-- extending base html -->
 {%load static%}
-<!-- static file loaded -->
-{%block main_content %}
-<!-- main contents will be here -->
+<!-- loading static files -->
+{%block main_content%}
+<!-- starting main content -->
+
+<!-- ending main content -->
 {%endblock main_content%}
-<!-- we will add our custom scripts here -->
+<!--  -->
 {%block main_scripts%}
 <!-- main scripts started -->
+
 <!-- main scripts ended -->
 {%endblock main_scripts%}

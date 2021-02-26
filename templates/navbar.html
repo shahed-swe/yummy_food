@@ -41,12 +41,12 @@
                                             <ul class="submenu">
                                                 <li><a href="#blog.html">Profile</a></li>
                                                 <li><a href="#blog_details.html">Edit Profile</a></li>
-                                                <li><a href="#elements.html">Logout</a></li>
+                                                <li><a href="{%url 'mylogout'%}">Logout</a></li>
                                             </ul>
                                         </li>
 
                                         {%else%}
-                                        <li><a href="#menu.html">Login / Registration</a></li>
+                                        <li><a href="{%url 'mylogin'%}">Login / Registration</a></li>
                                         {%endif%}
                                     </ul>
                                 </nav>

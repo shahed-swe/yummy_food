@@ -4,6 +4,20 @@
 <!-- static file loaded -->
 {%block main_content %}
 <!-- main contents starts here -->
+<style>
+    .extra-input {
+        border: 2px solid #ff5600 !important;
+        height: 70px;
+    }
+    
+    .btn {
+        border-radius: 0px !important;
+    }
+    
+    .hero__btn {
+        padding-top: 50px;
+    }
+</style>
 <main>
 
     <div class="slider-area ">
@@ -12,33 +26,23 @@
             <div class="single-slider slider-height d-flex align-items-center">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xl-9 col-lg-9 col-md-9">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="hero__caption">
                                 <span data-animation="fadeInLeft" data-delay=".2s">Discover Your Teste</span>
-                                <h1 data-animation="fadeInLeft" data-delay=".4s">We belive good food offer great smile</h1>
-                                <p data-animation="fadeInLeft" data-delay=".6s">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
+                                <h1 class="col-9" data-animation="fadeInLeft" data-delay=".4s">We belive good food offer great smile</h1>
+                                <p class="col-9" data-animation="fadeInLeft" data-delay=".6s">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
 
-                                <div class="hero__btn">
-                                    <a href="industries.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay=".8s">Resurvation</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="single-slider slider-height d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-9 col-lg-9 col-md-9">
-                            <div class="hero__caption">
-                                <span data-animation="fadeInLeft" data-delay=".2s">Discover Your Teste</span>
-                                <h1 data-animation="fadeInLeft" data-delay=".4s">We belive good food offer great smile</h1>
-                                <p data-animation="fadeInLeft" data-delay=".6s">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
-
-                                <div class="hero__btn">
-                                    <a href="industries.html" class="btn hero-btn" data-animation="fadeInLeft" data-delay=".8s">Resurvation</a>
-                                </div>
+                                <form class="hero__btn col-10 mx-auto" method="POST">
+                                    {%csrf_token%}
+                                    <div class="input-group mb-2">
+                                        <input type="text" name="search" class="form-control extra-input" placeholder="Search...">
+                                        <div class="input-group-prepent">
+                                            <button class="btn btn-outline-danger shadow-none">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -426,61 +430,6 @@
     </div>
 
 
-    <div class="booking-area section-bg pt-120 pb-130" data-background="{%static 'front/'%}img/gallery/section_bg04.png">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="cl-xl-7 col-lg-8 col-md-10">
-
-                    <div class="section-tittle text-center mb-40">
-                        <span>About Our Restaurant</span>
-                        <h2>Book A Table</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <form action="#">
-                        <div class="booking-wrap d-flex justify-content-between align-items-center">
-
-                            <div class="single-select-box mb-30">
-                                <div class="select-this">
-                                    <div class="select-itms">
-                                        <div class="select-icon">
-                                            <i class="ti-user"></i>
-                                        </div>
-                                        <select name="select" id="select1">
-<option value="">Person</option>
-<option value="">Person 2</option>
-<option value="">Person 3</option>
-<option value="">Person 4</option>
-</select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="single-select-box mb-30">
-                                <div class="boking-datepicker">
-                                    <input id="datepicker1" placeholder="Date" />
-                                </div>
-                            </div>
-
-                            <div class="single-select-box mb-30">
-                                <div class="boking-datepicker">
-                                    <input id="timepicker" placeholder="Time" />
-                                </div>
-                            </div>
-
-                            <div class="single-select-box mb-30">
-                                <button class="btn select-btn">Book Now</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div class="our-services section-padding30">
         <div class="container">
             <div class="row justify-content-sm-center">
@@ -555,55 +504,6 @@
         </div>
     </div>
 
-
-    <section class="blogs-area section-padding30">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-
-                    <div class="section-tittle text-center mb-70">
-                        <span>Our New Blog News</span>
-                        <h2>Our Recnet News</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blogs mb-100">
-                        <div class="blog-img">
-                            <img src="{%static 'front/'%}img/gallery/blog1.png" alt="">
-                        </div>
-                        <div class="blog-cap">
-                            <span class="color1">23 Dec, 2020</span>
-                            <h4><a href="blog_details.html">Addiction When Food Plate Becomes</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blogs mb-100">
-                        <div class="blog-img">
-                            <img src="{%static 'front/'%}img/gallery/blog2.png" alt="">
-                        </div>
-                        <div class="blog-cap">
-                            <span class="color1">23 Dec, 2020</span>
-                            <h4><a href="blog_details.html">Addiction When Food Plate Becomes</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blogs mb-100">
-                        <div class="blog-img">
-                            <img src="{%static 'front/'%}img/gallery/blog3.png" alt="">
-                        </div>
-                        <div class="blog-cap">
-                            <span class="color1">23 Dec, 2020</span>
-                            <h4><a href="blog_details.html">Addiction When Food Plate Becomes</a></h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 </main>
 <!-- main contents ends here -->

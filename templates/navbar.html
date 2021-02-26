@@ -1,6 +1,24 @@
 {%load static%}
+<style>
+    .cart-item {
+        position: relative;
+        top: 8px;
+        left: -5px;
+        height: 20px;
+        width: 20px;
+        background-color: tomato;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    
+    .item-number {
+        position: relative;
+        top: -1px;
+        left: 8px;
+        color: white;
+    }
+</style>
 <header>
-
     <div class="header-area header-transparent">
         <div class="main-header  header-sticky">
             <div class="container-fluid">
@@ -8,7 +26,7 @@
 
                     <div class="col-xl-2 col-lg-2 col-md-1">
                         <div class="logo">
-                            <a href="index.html"><img src="{%static 'front/'%}img/logo/logo.png" alt=""></a>
+                            <a href="{%url 'home'%}"><img src="{%static 'front/'%}img/logo/logo5.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-xl-10 col-lg-10 col-md-10">
@@ -17,26 +35,21 @@
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="{%url 'home'%}">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="menu.html">Menu</a></li>
                                         {%if user.is_authenticated%}
-                                        <li><a href="blog.html">{{user.first_name}}</a>
+                                        <li><a href="#menu.html"><i class="fa fa-cart-arrow-down"></i><span class="cart-item"><span class="item-number">1</span></span></a></li>
+                                        <li><a href="#blog.html">{{user.first_name}}</a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">Profile</a></li>
-                                                <li><a href="blog_details.html">Edit Profile</a></li>
-                                                <li><a href="elements.html">Logout</a></li>
+                                                <li><a href="#blog.html">Profile</a></li>
+                                                <li><a href="#blog_details.html">Edit Profile</a></li>
+                                                <li><a href="#elements.html">Logout</a></li>
                                             </ul>
                                         </li>
+
                                         {%else%}
-                                        <li><a href="menu.html">Login / Registration</a></li>
+                                        <li><a href="#menu.html">Login / Registration</a></li>
                                         {%endif%}
-                                        <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
-                            </div>
-                            <div class="header-right-btn f-right d-none d-lg-block ml-20">
-                                <a href="contact.html" class="border-btn header-btn">Order Online</a>
                             </div>
                         </div>
                     </div>

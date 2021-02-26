@@ -13,7 +13,6 @@ class User(AbstractUser):
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True, related_name="customer_user")
     full_name = models.CharField(max_length=100, blank=True, null=True)
-    email = models.CharField(max_length=100,blank=True, null=True)
     age = models.CharField(max_length=100, blank=True, null=True)
     phone_no = models.CharField(max_length=100, blank=True, null=True)
 
@@ -33,6 +32,7 @@ class Division(models.Model):
         return self.division_name
 
 class Place(models.Model):
+    division = models.ForeignKey(Division, on_delete=models.CASCADE, null=True, blank=True)
     district_name = models.CharField(max_length=120, blank=True, null=True)
     zip_code = models.CharField(max_length=100, blank=True, null=True)
 
@@ -96,7 +96,6 @@ class FoodName(models.Model):
     image_one = models.ImageField(upload_to="food/image/", null=True)
     image_two = models.ImageField(upload_to="food/image/", null=True)
     image_three = models.ImageField(upload_to="food/image/", null=True)
-    food_description = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = "food_name"

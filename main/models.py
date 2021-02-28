@@ -88,6 +88,7 @@ class FoodCategory(models.Model):
         return self.category_name + ' | '+self.category_id
 
 class FoodName(models.Model):
+    provider = models.ForeignKey(ResturantUser, on_delete=models.CASCADE, blank=True, null=True)
     slug = models.SlugField(max_length=120,null=True, blank=True)
     name = models.CharField(max_length=120, null=True, blank=True)
     category = models.ForeignKey(FoodCategory, on_delete=models.CASCADE, blank=True, null=True)

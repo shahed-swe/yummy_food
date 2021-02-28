@@ -17,6 +17,13 @@
         left: 8px;
         color: white;
     }
+    
+    .fa-user-circle {
+        font-size: 24px;
+        position: relative;
+        top: 5px;
+        color: tomato;
+    }
 </style>
 <header>
     <div class="header-area header-transparent">
@@ -46,7 +53,7 @@
                                         </li>
 
                                         {%else%}
-                                        <li><a href="{%url 'mylogin'%}">Login / Registration</a></li>
+                                        <li><a href="{%url 'mylogin'%}"><span class="fa fa-user-circle"></span> Login / Registration</a></li>
                                         {%endif%}
                                     </ul>
                                 </nav>

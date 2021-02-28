@@ -17,6 +17,18 @@
     .hero__btn {
         padding-top: 50px;
     }
+    
+    .flaticon-tools-and-utensils-1:hover {
+        color: tomato !important;
+    }
+    
+    .district_name {
+        font-weight: bold;
+    }
+    
+    .district_name:hover {
+        color: tomato !important;
+    }
 </style>
 <main>
 
@@ -32,7 +44,7 @@
                                 <h1 class="col-9" data-animation="fadeInLeft" data-delay=".4s">We belive good food offer great smile</h1>
                                 <p class="col-9" data-animation="fadeInLeft" data-delay=".6s">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
 
-                                <form class="hero__btn col-10 mx-auto" method="POST">
+                                <form class="hero__btn col-10" method="POST">
                                     {%csrf_token%}
                                     <div class="input-group mb-2">
                                         <input type="text" name="search" class="form-control extra-input" placeholder="Search...">
@@ -402,6 +414,35 @@
 
     </section>
 
+    <div class="our-services section-padding30">
+        <div class="container">
+            <div class="row">
+                <div class="cl-xl-7 col-lg-8 col-md-10">
+
+                    <div class="section-tittle text-left">
+                        <span>Cities</span>
+                        <h2>Find us in this cities and many more</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {%for i in place%}
+                <a href="{%url 'food_list' slug=i.district_name%}">
+                    <div class=" col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-services text-center mb-30">
+                            <div class="services-ion">
+                                <span class="flaticon-tools-and-utensils-1"></span>
+                            </div>
+                            <div class="services-cap">
+                                <h5><a href="{%url 'food_list' slug=i.district_name%}"><span class="district_name">{{i.district_name}}</span></a></h5>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
 
     <div class="about-area2 section-padding30">
         <div class="container">
@@ -430,54 +471,7 @@
     </div>
 
 
-    <div class="our-services section-padding30">
-        <div class="container">
-            <div class="row justify-content-sm-center">
-                <div class="cl-xl-7 col-lg-8 col-md-10">
 
-                    <div class="section-tittle text-center mb-70">
-                        <span>Servicees We Offer</span>
-                        <h2>Our Best Services</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class=" col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-restaurant"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="#">Best Chef</a></h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-services active text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-tools-and-utensils-1"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="#">Quality Food</a></h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-services text-center mb-30">
-                        <div class="services-ion">
-                            <span class="flaticon-restaurant"></span>
-                        </div>
-                        <div class="services-cap">
-                            <h5><a href="#">Perfect Cook</a></h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <div class="about-area3 pt-180 pb-170 section-bg" data-background="{%static 'front/'%}img/gallery/section_bg03.png">

@@ -43,6 +43,7 @@ class Place(models.Model):
 
 class ResturantUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name="resturant_user")
+    resturant_name = models.CharField(max_length=120, blank=True, null=True)
     full_name = models.CharField(max_length=100, blank=True, null=True)
     email = models.CharField(max_length=120, blank=True, null=True)
     phone_no = models.CharField(max_length=100, blank=True, null=True)

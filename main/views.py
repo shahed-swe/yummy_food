@@ -33,6 +33,8 @@ def myregistration(request):
                 phone_no = request.POST.get('phone_no'),
             )
             customer.save()
+        else:
+            return redirect('/registration')
     return render(request, 'user/registration.html', {"title":"Registration"})
 
 def mylogin(request):
@@ -55,5 +57,40 @@ def mylogout(request):
     logout(request)
     return redirect('/login')
 
-def food_list(request, slug):
+def resturant_list(request, slug):
     return HttpResponse("<h1>City name is {}</h1>".format(slug))
+
+def resturant_registration(request):
+    # if request.user.is_resturent or request.user.is_authenticated:
+    #     return redirect('/')
+    if request.method == "POST":
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password1 == password2:
+            user = User(
+                username = request.POST.get('username'),
+                first_name = request.POST.get('first_name'),
+                last_name = request.POST.get('last_name'),
+                email = request.POST.get('email'),
+                is_resturent = True,
+                is_active = True,
+            )
+            user.set_password(request.POST.get('password1'))
+            user.save()
+            print(user)
+            resturent = ResturantUser(
+                user = user,
+                full_name = user.first_name + ' ' + user.last_name,
+                resturant_name = request.POST.get('resturantname'),
+                description = request.POST.get('description'),
+                menu_list = request.FILES['menu-image'],
+                position = Place.objects.get(district_name=request.POST.get('cityname')),
+            )
+            resturent.save()
+            return redirect('/')
+        else:
+            return redirect('/resturant')
+    place = Place.objects.all()
+    context = {"title":"Registration | Yummy Foods",'place':place}
+    
+    return render(request, 'resturant/registration.html',context)

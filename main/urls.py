@@ -7,6 +7,9 @@ urlpatterns = [
     path('registration/', views.myregistration, name="myregistration"),
     path('login/', views.mylogin, name="mylogin"),
     path('logout/', views.mylogout, name="mylogout"),
-    url(r'^foods/(?P<slug>.*)/$', views.food_list, name='food_list'),
+    url(r'^resturants/(?P<slug>.*)/$', views.resturant_list, name='resturant_list'),
+    path('resturant/', views.resturant_registration,
+         name="resturant_registration"),
+
 
 ]

@@ -42,7 +42,7 @@
                             <div class="hero__caption">
                                 <span data-animation="fadeInLeft" data-delay=".2s">Discover Your Teste</span>
                                 <h1 class="col-9" data-animation="fadeInLeft" data-delay=".4s">We belive good food offer great smile</h1>
-                                <p class="col-9" data-animation="fadeInLeft" data-delay=".6s">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat is aute irure.</p>
+                                <p class="col-9" data-animation="fadeInLeft" data-delay=".6s">Would you like thousands of new customers to taste your amazing food? So would we! <br> It's simple: we list your menu online, help you process orders, pick them up, and deliver them to hungry pandas - in a heartbeat!</p>
 
                                 <form class="hero__btn col-10" method="POST">
                                     {%csrf_token%}
@@ -74,7 +74,7 @@
                             <span>Want To be partner</span>
                             <h2>Do you want to enlist your resturant with us?</h2>
                         </div>
-                        <p>No worries just get it <a href="" class="btn btn-outline-danger shadow-none" style="margin-left: 25px">Enter</a></p>
+                        <p>No worries just get it <a href="{%url 'resturant_registration'%}" class="btn btn-danger shadow-none border-btn" style="margin-left: 25px">Enter</a></p>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
@@ -427,14 +427,14 @@
             </div>
             <div class="row">
                 {%for i in place%}
-                <a href="{%url 'food_list' slug=i.district_name%}">
+                <a href="{%url 'resturant_list' slug=i.district_name%}">
                     <div class=" col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
                                 <span class="flaticon-tools-and-utensils-1"></span>
                             </div>
                             <div class="services-cap">
-                                <h5><a href="{%url 'food_list' slug=i.district_name%}"><span class="district_name">{{i.district_name}}</span></a></h5>
+                                <h5><a href="{%url 'resturant_list' slug=i.district_name%}"><span class="district_name">{{i.district_name}}</span></a></h5>
                             </div>
                         </div>
                     </div>

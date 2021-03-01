@@ -1,0 +1,137 @@
+{%extends 'base.html' %}
+<!-- extending base html -->
+{%load static%}
+<!-- loading static files -->
+{%block main_content%}
+<!-- starting main content -->
+<style>
+    .section-top-border {
+        margin-top: 100px;
+        background-image: url('/static/front/img/gallery/gallery1.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        padding-bottom: 20px;
+    }
+    /* .text-maker {
+        position: relative;
+        top: 200px;
+    } */
+    
+    .text-maker h1,
+    .text-maker p {
+        color: white !important;
+    }
+    
+    .text-maker-2 {
+        color: white !important;
+    }
+    
+    label {
+        color: white;
+    }
+</style>
+<section class="section-top-border">
+    <div class="container">
+        <div class="row">
+            <form method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="row">
+                    <div class="col-lg-6 col-md-10 col-sm-12 text-maker">
+                        <h1>PARTNER WITH US</h1>
+                        <p>We're hungry for the best things in life: delicious food, exploring the city and bringing the first bite of food to our customers.</p>
+                        <p>yummyfood is multi-national, fast-growing business that maintains its appeal as localised service with community ambition.</p>
+                    </div>
+                    <div class="col-lg-6 col-md-10 col-sm-12">
+                        <h3 class="mb-30 text-maker-2">Interested? Fill in the form below <br> to become our partner and <br> increase your revenue!</h3>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-10 form-group">
+                                <label for="">Resturent Name</label>
+                                <input type="text" name="resturantname" class="single-input" placeholder="Resturant Name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-10 form-group">
+                                <label for="">Resturent Image</label>
+                                <input type="file" name="resturant_image" class="single-input">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class=" col-xl-12 col-md-8 form-group">
+                                <label for="">First Name</label>
+                                <input type="text" name="first_name" placeholder="First Name" class="single-input">
+                            </div>
+                            <div class="col-xl-12 col-md-8 form-group">
+                                <label for="">Last Name</label>
+                                <input type="text" name="last_name" placeholder="Last Name" class="single-input">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-10 form-group">
+                                <label for="">User Name</label>
+                                <input type="text" name="username" class="single-input" placeholder="User Name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-10 form-group">
+                                <label for="">Email</label>
+                                <input type="email" name="email" class="single-input" placeholder="example@email.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-10 form-group">
+                                <label for="">Phone No</label>
+                                <input type="text" name="phone_no" class="single-input" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-10 form-group">
+                                <label for="">Description</label>
+                                <textarea name="description" id="" cols="30" rows="10" placeholder="Describe" class="single-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-10 form-group">
+                                <label for="">Menu Image</label>
+                                <input type="file" name="menu-image" class="single-input">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-xl-12 col-md-8 form-group ">
+                                <div class="form-select" id="default-select">
+                                    <label for="">City Name</label>
+                                    <select style="display: none; " name="cityname">
+                                        <option value="">...</option>
+                                        {%for i in place%}
+                                        <option value="{{i.district_name}}">{{i.district_name}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row ">
+                            <div class=" col-xl-6 col-md-8 form-group ">
+                                <label for="">Password</label>
+                                <input type="password" name="password1 " placeholder="Password " class="single-input ">
+                            </div>
+                            <div class="col-xl-6 col-md-8 form-group ">
+                                <label for="">Confirm Password</label>
+                                <input type="password" name="password2 " placeholder="Confirm Password " class="single-input ">
+                            </div>
+                        </div>
+                        <button class="btn btn-danger shadow-none btn-block ">Submit Form</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ending main content -->
+{%endblock main_content%}
+<!--  -->
+{%block main_scripts%}
+<!-- main scripts started -->
+
+<!-- main scripts ended -->
+{%endblock main_scripts%}

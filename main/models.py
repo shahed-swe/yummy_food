@@ -44,25 +44,19 @@ class Place(models.Model):
 class ResturantUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name="resturant_user")
     resturant_name = models.CharField(max_length=120, blank=True, null=True)
+    resturant_front = models.ImageField(upload_to="food/resturant/", null=True)
     full_name = models.CharField(max_length=100, blank=True, null=True)
-    email = models.CharField(max_length=120, blank=True, null=True)
     phone_no = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(max_length=500, blank=True, null=True)
+    menu_list = models.ImageField(upload_to="food/image/", null=True)
+    position = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="rest_place",blank=True,null=True)
     
     class Meta:
         db_table = "resturant_user"
 
     def __str__(self):
-        return self.full_name
+        return self.full_name + ' ' +self.resturant_name
 
-class ResturantPosition(models.Model):
-    rest_user = models.OneToOneField(ResturantUser, on_delete=models.CASCADE, primary_key=True, related_name="resturant_pos")
-    position = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="rest_place")
-
-    class Meta:
-        db_table = "resturant_place"
-
-    def __str__(self):
-        return self.full_name
 
 
 class Rider(models.Model):

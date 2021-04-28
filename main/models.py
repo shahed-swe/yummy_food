@@ -57,6 +57,24 @@ class ResturantUser(models.Model):
     def __str__(self):
         return self.full_name + ' ' +self.resturant_name
 
+class allowResturant(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_name = models.CharField(max_length=120, blank=True, null=True)
+    first_name = models.CharField(max_length=120, blank=True, null=True)
+    last_name = models.CharField(max_length=120, blank=True, null=True)
+    resturant_name = models.CharField(max_length=120, blank=True, null=True)
+    resturant_front = models.ImageField(upload_to="food/resturant/", null=True)
+    full_name = models.CharField(max_length=100, blank=True, null=True)
+    phone_no = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(max_length=500, blank=True, null=True)
+    menu_list = models.ImageField(upload_to="food/add/", null=True)
+    position = models.ForeignKey(Place, on_delete=models.CASCADE,blank=True,null=True)
+
+    class Meta:
+        db_table = "allow_user"
+
+    def __str__(self):
+        return self.full_name + ' ' +self.resturant_name
 
 
 class Rider(models.Model):

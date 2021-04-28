@@ -62,12 +62,15 @@ def mylogout(request):
     logout(request)
     return redirect('/login')
 
+def userprofile(request):
+    return HttpResponse("{} How are you?".format(request.user.username))
+
 def resturant_list(request, slug):
     return HttpResponse("<h1>City name is {}</h1>".format(slug))
 
 def resturant_registration(request):
-    # if request.user.is_resturent or request.user.is_authenticated:
-    #     return redirect('/')
+    if request.user.is_resturent or request.user.is_authenticated:
+        return redirect('/')
     if request.method == "POST":
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')

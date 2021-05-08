@@ -63,7 +63,7 @@
         </div>
     </div>
 
-
+    {%if user.is_customer or not user.is_authenticated%}
     <div class="about-low-area section-padding30">
         <div class="container">
             <div class="row align-items-center">
@@ -74,7 +74,7 @@
                             <span>Want To be partner</span>
                             <h2>Do you want to enlist your resturant with us?</h2>
                         </div>
-                        <p>No worries just get it <a href="{%url 'resturant_registration'%}" class="btn btn-danger shadow-none border-btn" style="margin-left: 25px">Enter</a></p>
+                        <p>No worries just get in <a href="{%url 'resturant_registration'%}" class="btn btn-danger shadow-none border-btn" style="margin-left: 25px">Enter</a></p>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
@@ -128,291 +128,137 @@
             </div>
         </div>
     </div>
+    <div class="about-low-area section-padding30">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="about-caption mb-50">
 
+                        <div class="section-tittle mb-35">
+                            <span>Want To have a delicions food?</span>
+                            <h2>Finding Some place to have a breakfast or dinner?</h2>
+                        </div>
 
-    <section class="gallery-area fix ">
-
-        <div class="gallery-top section-bg pt-90 pb-40" data-background="{%static 'front/'%}img/gallery/section_bg01.png">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="cl-xl-7 col-lg-8 col-md-10">
-
-                        <div class="section-tittle text-center mb-70">
-                            <span>Our Offerd Menu</span>
-                            <h2>Some Trendy And Popular Courses Offerd</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-restaurant"></span>
+                                </div>
+                                <div class="caption">
+                                    <p>Our Enlisted Resturents provide delicious food</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-tools-and-utensils-1"></span>
+                                </div>
+                                <div class="caption">
+                                    <p>We focus on quality not quantity of food</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-hat"></span>
+                                </div>
+                                <div class="caption">
+                                    <p>Totaly Zero tollarance on late delivery</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-restaurant"></span>
+                                </div>
+                                <div class="caption">
+                                    <p>Provide Best Service at any time</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="properties__button">
+                <div class="col-lg-6 col-md-12">
 
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Special</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"> Lunch</a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"> Brakefirst </a>
-                                <a class="nav-item nav-link" id="nav-dinner-tab" data-toggle="tab" href="#nav-dinner" role="tab" aria-controls="nav-dinner" aria-selected="false"> Dinner </a>
-                            </div>
-                        </nav>
-
+                    <div class="about-img ">
+                        <img src="{%static 'front/'%}img/hero/find.svg" alt="">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    {%else%}
+    <div class="about-low-area section-padding30">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="about-caption mb-50">
 
+                        <div class="section-tittle mb-35">
+                            <span>Want To have a delicions food?</span>
+                            <h2>Finding Some place to have a breakfast or dinner?</h2>
+                        </div>
 
-        <div class="container-fluid p-0">
-
-            <div class="tab-content" id="nav-tabContent">
-
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="row no-gutters">
-                        <div class="col-lg-5 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery1.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-restaurant"></span>
+                                </div>
+                                <div class="caption">
+                                    <p>Our Enlisted Resturents provide delicious food</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery2.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-tools-and-utensils-1"></span>
+                                </div>
+                                <div class="caption">
+                                    <p>We focus on quality not quantity of food</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="row no-gutters">
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery3.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-hat"></span>
                                 </div>
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery4.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="caption">
+                                    <p>Totaly Zero tollarance on late delivery</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">
+                            <div class="single-caption mb-20">
+                                <div class="caption-icon">
+                                    <span class="flaticon-restaurant"></span>
+                                </div>
+                                <div class="caption">
+                                    <p>Provide Best Service at any time</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-12">
 
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <div class="row no-gutters">
-                        <div class="col-lg-5 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery2.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery1.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="row no-gutters">
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery3.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery4.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <div class="row no-gutters">
-                        <div class="col-lg-5 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery1.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery2.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="row no-gutters">
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery3.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery4.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="nav-dinner" role="tabpanel" aria-labelledby="nav-dinner">
-                    <div class="row no-gutters">
-                        <div class="col-lg-5 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery3.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="gallery-box">
-                                <div class="single-gallery">
-                                    <div class="gallery-img big-img" style="background-image: url(static/front/img/gallery/gallery4.png);"></div>
-                                    <div class="g-caption">
-                                        <span>$25</span>
-                                        <h4>Delicious Food</h4>
-                                        <p>Ut enim ad minim veniam quis nostr.</p>
-                                        <a href="#" class="btn order-btn">Order Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12">
-                            <div class="row no-gutters">
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery1.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="gallery-box">
-                                        <div class="single-gallery">
-                                            <div class="gallery-img smoll-img" style="background-image: url(static/front/img/gallery/gallery2.png);"></div>
-                                            <div class="g-caption">
-                                                <span>$25</span>
-                                                <h4>Delicious Food</h4>
-                                                <p>Ut enim ad minim veniam quis nostr.</p>
-                                                <a href="#" class="btn order-btn">Order Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="about-img ">
+                        <img src="{%static 'front/'%}img/hero/find.svg" alt="">
                     </div>
                 </div>
             </div>
-
         </div>
+    </div>
+    {%endif%}
 
-    </section>
 
     <div class="our-services section-padding30">
         <div class="container">
@@ -427,14 +273,14 @@
             </div>
             <div class="row">
                 {%for i in place%}
-                <a href="{%url 'resturant_list' slug=i.district_name%}">
+                <a href="{%url 'foods' slug=i.district_name%}">
                     <div class=" col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
                                 <span class="flaticon-tools-and-utensils-1"></span>
                             </div>
                             <div class="services-cap">
-                                <h5><a href="{%url 'resturant_list' slug=i.district_name%}"><span class="district_name">{{i.district_name}}</span></a></h5>
+                                <h5><a href="{%url 'foods' slug=i.district_name%}"><span class="district_name">{{i.district_name}}</span></a></h5>
                             </div>
                         </div>
                     </div>

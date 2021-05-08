@@ -1,0 +1,222 @@
+{%extends 'base.html'%}
+<!--  -->
+{%load static%}
+<!--  -->
+{%block main_content%}
+<link rel="stylesheet" href="{%static 'front/toaster/jquery.dreamalert.css'%}">
+<style>
+    .category_based {
+        margin-top: 130px;
+    }
+    
+    .category_name .name {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: lighter;
+        font-size: xx-large;
+        margin-top: 30px;
+    }
+    
+    .food-items .image {
+        height: 220px;
+        padding: 0 0 0 0;
+    }
+    
+    .price .button {
+        margin-top: -40px;
+    }
+    
+    .btn {
+        padding: 14px 7px 14px 9px !important;
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 20px;
+    }
+    
+    .margin-section {
+        margin-top: 100px;
+    }
+</style>
+<!--  -->
+<section class="container category_based">
+    {%for i in categories%}
+    <div class="category_name col-12">
+        {%if foods%}
+        <h3 class="name">{{i}}</h3>
+        {%else%}
+        <!--  -->
+        {%endif%}
+
+    </div>
+    <div class="grid">
+        {%for j in foods%}
+        <!--  -->
+
+        {%for k in j%}
+        <!--  -->
+        {%if k.category.category_name == i%}
+        <div class="food-items card">
+            <img src="{{k.image_one.url}}" class="card-img-top image" alt="">
+            <div class="card-body">
+                <h5 class="card-title">{{k.name}}</h5>
+                <div class="price">
+                    <div class="price d-flex flex-row">
+                        <h5>{{k.price}} Tk</h5>
+                    </div>
+                    <div class="button d-flex flex-row-reverse">
+                        <button class="btn btn-info shadow-none update-cart swal" data-product="{{k.id}}" data-action="add"><i class="fa fa-cart">Add To Cart</i></button>
+                    </div>
+                </div>
+                <p class="card-text"><small class="text-muted">
+                    {{k.provider.resturant_name}}
+                </small></p>
+            </div>
+        </div>
+        {%endif%}
+        <!--  -->
+        {%endfor%}
+
+        <!--  -->
+        {%endfor%}
+    </div>
+
+    <!--  -->
+    {%endfor%}
+</section>
+<!-- for all food section -->
+<section class="all-food container">
+    <div class="category_name col-12">
+        {%if foods%}
+        <h3 class="name">All Resturants Food</h3>
+        {%else%}
+        <h3 class="name">No Food Available in this area</h3>
+        {%endif%}
+    </div>
+    <div class="grid">
+        {%for j in foods%}
+        <!--  -->
+
+        {%for k in j%}
+        <!--  -->
+        <div class="food-items card">
+            <a href="#">
+                <img src="{{k.image_one.url}}" class="card-img-top image" alt="">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{k.name}}</h5>
+                <div class="price">
+                    <div class="price d-flex flex-row">
+                        <h5>{{k.price}} Tk</h5>
+                    </div>
+                    <div class="button d-flex flex-row-reverse">
+                        <button class="btn btn-info shadow-none update-cart swal" data-product="{{k.id}}" data-action="add"><i class="fa fa-cart">Add To Cart</i></button>
+                    </div>
+                </div>
+                <p class="card-text"><small class="text-muted">
+                    {{k.provider.resturant_name}}
+                </small></p>
+            </div>
+        </div>
+        <!--  -->
+        {%endfor%}
+
+        <!--  -->
+        {%endfor%}
+    </div>
+
+</section>
+<div class="margin-section"></div>
+
+
+<!--  -->
+{%endblock main_content%}
+<!--  -->
+{%block main_script%}
+<script src="http://scottoffen.github.io/jquery.toaster/jquery.toaster.js"></script>
+<!-- here extra scripts will be written -->
+<script>
+    var user = '{{request.user}}';
+    var status = '{{request.user.is_customer}}'
+
+    function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken');
+
+    $(function() {
+        $('.swal').on('click', function() {
+            console.log(user)
+            if (user == "AnonymousUser") {
+                $.toaster({
+                    message: 'you are not logged in yet',
+                    title: 'Hello' + ' ' + user,
+                    priority: 'danger'
+                });
+            } else if (status == "False") {
+                $.toaster({
+                    message: "Admin Can't Shop From Here",
+                    title: 'Hello' + ' ' + user,
+                    priority: 'danger'
+                });
+            }
+        })
+    })
+
+    var updatebtn = document.getElementsByClassName('update-cart')
+
+    for (let i = 0; i < updatebtn.length; i++) {
+        updatebtn[i].addEventListener('click', function() {
+            event.preventDefault();
+            var prodId = this.dataset.product;
+            var action = this.dataset.action;
+
+            if (status == "True") {
+                updateUserOrder(prodId, action);
+                $.toaster({
+                    message: 'Item has been Added',
+                    title: 'Hello' + ' ' + user,
+                    priority: 'success'
+                })
+            } else {
+                // console.log("You are not suppose to be here")
+            }
+        })
+    }
+
+    function updateUserOrder(productId, action) {
+        var url = '/update_item/';
+        fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({
+                    'productId': productId,
+                    'action': action
+                })
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                console.log(data)
+            })
+    }
+</script>
+<!--  -->
+{%endblock main_script%}

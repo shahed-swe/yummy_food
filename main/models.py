@@ -8,7 +8,7 @@ class User(AbstractUser):
     is_rider = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.first_name+ ' | '+ self.last_name
+        return self.first_name+ ' '+ self.last_name
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True, related_name="customer_user")
@@ -98,7 +98,7 @@ class FoodCategory(models.Model):
         db_table = "categories"
     
     def __str__(self):
-        return self.category_name + ' | '+self.category_id
+        return self.category_name + ' | '+str(self.category_id)
 
 class FoodName(models.Model):
     provider = models.ForeignKey(ResturantUser, on_delete=models.CASCADE, blank=True, null=True)
@@ -130,7 +130,7 @@ class Order(models.Model):
         db_table = "order"
 
     def __str__(self):
-        return self.customer
+        return self.customer.full_name
 
     @property
     def get_cart_total(self):
@@ -160,7 +160,7 @@ class OrderItem(models.Model):
         db_table = "order_items"
     
     def __str__(self):
-        return self.order
+        return self.order.customer.full_name + " -> Borrowd " + str(self.quantity) +" " +self.food.name
 
     @property
     def get_total(self):

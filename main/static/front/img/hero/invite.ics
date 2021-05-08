@@ -1,0 +1,111 @@
+BEGIN:VCALENDAR
+PRODID:-//Microsoft Corporation//Outlook 16.0 MIMEDIR//EN
+VERSION:2.0
+METHOD:REQUEST
+X-MS-OLK-FORCEINSPECTOROPEN:TRUE
+BEGIN:VTIMEZONE
+TZID:Eastern Standard Time
+BEGIN:STANDARD
+DTSTART:16011104T020000
+RRULE:FREQ=YEARLY;BYDAY=1SU;BYMONTH=11
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:16010311T020000
+RRULE:FREQ=YEARLY;BYDAY=2SU;BYMONTH=3
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+ATTENDEE;CN='shahedtalukder51@gmail.com';RSVP=TRUE:mailto:shahedtalukder51@
+	gmail.com
+ATTENDEE;CN='prionto71@gmail.com';RSVP=TRUE:mailto:prionto71@gmail.com
+ATTENDEE;CN='utchas903@gmail.com';RSVP=TRUE:mailto:utchas903@gmail.com
+ATTENDEE;CN='john@repairnet.io';RSVP=TRUE:mailto:john@repairnet.io
+ATTENDEE;CN='Johnmagak@gmail.com';RSVP=TRUE:mailto:Johnmagak@gmail.com
+CLASS:PUBLIC
+CREATED:20210505T162657Z
+DESCRIPTION:Owen Sakawa (repairnet.io) is inviting you to a scheduled Zoom 
+	meeting.\n\nJoin Zoom Meeting\nhttps://theonevalley.zoom.us/j/92455415774?
+	pwd=TDdmc1hKUHpUT2JOd3l3UWJhYk02Zz09\n\nMeeting ID: 924 5541 5774\nPasscod
+	e: 293287\nOne tap mobile\n+13017158592\,\,92455415774#\,\,\,\,*293287# US
+	 (Washington DC)\n+13126266799\,\,92455415774#\,\,\,\,*293287# US (Chicago
+	)\n\nDial by your location\n        +1 301 715 8592 US (Washington DC)\n  
+	      +1 312 626 6799 US (Chicago)\n        +1 929 436 2866 US (New York)\
+	n        +1 346 248 7799 US (Houston)\n        +1 669 900 6833 US (San Jos
+	e)\n        +1 253 215 8782 US (Tacoma)\nMeeting ID: 924 5541 5774\nPassco
+	de: 293287\nFind your local number: https://theonevalley.zoom.us/u/adXRI3D
+	MT2\n\n\n
+DTEND;TZID="Eastern Standard Time":20210507T110000
+DTSTAMP:20210505T162657Z
+DTSTART;TZID="Eastern Standard Time":20210507T100000
+LAST-MODIFIED:20210505T162659Z
+LOCATION:https://theonevalley.zoom.us/j/92455415774?pwd=TDdmc1hKUHpUT2JOd3l
+	3UWJhYk02Zz09
+ORGANIZER;CN="Owen Sakawa":mailto:osakawa@repairnet.io
+PRIORITY:5
+SEQUENCE:0
+SUMMARY;LANGUAGE=en-us:Dev Team Huddle
+TRANSP:OPAQUE
+UID:040000008200E00074C5B7101A82E00800000000E00A9AB1A941D701000000000000000
+	0100000005967104D70491E48A749513FE61E4574
+X-ALT-DESC;FMTTYPE=text/html:<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//E
+	N">\n<HTML>\n<HEAD>\n<META NAME="Generator" CONTENT="MS Exchange Server ve
+	rsion 16.0.13901.20328">\n<TITLE></TITLE>\n</HEAD>\n<BODY>\n<!-- Converted
+	 from text/rtf format -->\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Cal
+	ibri">O</FONT></SPAN><A NAME=""><SPAN LANG="en-us"><FONT FACE="Calibri">we
+	n Sakawa (repairnet.io) is inviting you to a scheduled Zoom meeting.</FONT
+	></SPAN></A></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">Joi
+	n Zoom Meeting</FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"></SPAN><
+	A HREF="https://theonevalley.zoom.us/j/92455415774?pwd=TDdmc1hKUHpUT2JOd3l
+	3UWJhYk02Zz09"><SPAN LANG="en-us"></SPAN><SPAN LANG="en-us"></SPAN><SPAN L
+	ANG="en-us"><U><FONT COLOR="#0563C1" FACE="Calibri">https://theonevalley.z
+	oom.us/j/92455415774?pwd=TDdmc1hKUHpUT2JOd3l3UWJhYk02Zz09</FONT></U></SPAN
+	><SPAN LANG="en-us"></SPAN></A><SPAN LANG="en-us"></SPAN><SPAN LANG="en-us
+	"></SPAN><SPAN LANG="en-us"></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><
+	FONT FACE="Calibri">Meeting ID: 924 5541 5774</FONT></SPAN></P>\n\n<P DIR=
+	LTR><SPAN LANG="en-us"><FONT FACE="Calibri">Passcode: 293287</FONT></SPAN>
+	</P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">One tap mobile<
+	/FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">+1
+	3017158592\,\,92455415774#\,\,\,\,*293287# US (Washington DC)</FONT></SPAN
+	></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">+13126266799\,
+	\,92455415774#\,\,\,\,*293287# US (Chicago)</FONT></SPAN></P>\n\n<P DIR=LT
+	R><SPAN LANG="en-us"><FONT FACE="Calibri">Dial by your location</FONT></SP
+	AN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">&nbsp\;&nbsp
+	\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\; +1 301 715 8592 US (Washington DC)</
+	FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">&nb
+	sp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\; +1 312 626 6799 US (Chicago
+	)</FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">
+	&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\; +1 929 436 2866 US (New 
+	York)</FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calib
+	ri">&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\; +1 346 248 7799 US (
+	Houston)</FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Ca
+	libri">&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\; +1 669 900 6833 U
+	S (San Jose)</FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE
+	="Calibri">&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\;&nbsp\; +1 253 215 87
+	82 US (Tacoma)</FONT></SPAN></P>\n\n<P DIR=LTR><SPAN LANG="en-us"><FONT FA
+	CE="Calibri">Meeting ID: 924 5541 5774</FONT></SPAN></P>\n\n<P DIR=LTR><SP
+	AN LANG="en-us"><FONT FACE="Calibri">Passcode: 293287</FONT></SPAN></P>\n\
+	n<P DIR=LTR><SPAN LANG="en-us"><FONT FACE="Calibri">Find your local number
+	:</FONT></SPAN><SPAN LANG="en-us"> </SPAN><A HREF="https://theonevalley.zo
+	om.us/u/adXRI3DMT2"><SPAN LANG="en-us"></SPAN><SPAN LANG="en-us"></SPAN><S
+	PAN LANG="en-us"><U><FONT COLOR="#0563C1" FACE="Calibri">https://theoneval
+	ley.zoom.us/u/adXRI3DMT2</FONT></U></SPAN><SPAN LANG="en-us"></SPAN></A><S
+	PAN LANG="en-us"></SPAN><SPAN LANG="en-us"></SPAN><SPAN LANG="en-us"></SPA
+	N></P>\n<BR>\n\n</BODY>\n</HTML>
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MS-OLK-AUTOSTARTCHECK:FALSE
+X-MS-OLK-CONFTYPE:0
+X-MS-OLK-SENDER;CN="Owen Sakawa":mailto:osakawa@repairnet.io
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR

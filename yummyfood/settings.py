@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'p^vbl(=-@w$hqw#80)%jypnaiqsn!^cj_kcd1^&o70v8!_uwy='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 # abstracting users
 AUTH_USER_MODEL = 'main.User'
 

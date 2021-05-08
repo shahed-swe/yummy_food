@@ -1,0 +1,26 @@
+/* 
+    Document   : jquery.dreamalert
+    Created on : 2012-9-17, 23:14:27
+    Author     : dreamcog
+*/
+.dream_alert {position:fixed;top:50%;left:50%;box-shadow: 0 0 3px #000;z-index:10000;margin-left:-60px;margin-top:-60px;width:80x;height:80px;padding:20px;background:#000;border-radius:10px;text-align:center;opacity:0.8; text-shadow: 2px 2px 2px #000;}
+.dream_alert img {margin-bottom:10px;}
+.dream_alert span {color:#fff;}
+.dream_alert .summary {display:none}
+
+.alert-icon.alert-icon-center {width:50px;height:50px;display:block;margin:0 auto;background-repeat: none;background:url('icon-center.png');margin-bottom:10px;}
+.alert-icon-center.alert-icon-success {background-position: 0 0;}
+.alert-icon-center.alert-icon-error {background-position: 0 -50px;}
+.alert-icon-center.alert-icon-loading {background:url('icon-load-center.gif');}
+
+.alert-icon.alert-icon-right {width:24px;height:24px;display:block;margin:0 auto;background-repeat: none;background:url('icon-right.png');}
+.alert-icon-right.alert-icon-success {background-position: 0 0;}
+.alert-icon-right.alert-icon-error {background-position: 0 -24px;}
+.alert-icon-right.alert-icon-loading {background:url('icon-load-right.gif');}
+
+#dma_right {right: 10px;top:10px;position:fixed;z-index:9999}
+#dma_right .dream_alert {position: static;margin:0 0 10px 0;width:250px;height:auto;padding:10px 15px;border-radius:5px;}
+#dma_right .dream_alert .alert-icon {float:left;width:24px;}
+#dma_right .dream_alert span {display:block;margin-left:36px;text-align: left;font-size:14px;font-weight: bold;text-align: justify}
+#dma_right .dream_alert .summary {display:block;margin-left:36px;padding:3px 0;text-align: left;color:#fff;text-align: justify}
+

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .models import *
 import json
 from .utils import cartData
-
+import datetime
 # Create your views here.
 def home(request):
     data = cartData(request)
@@ -189,3 +189,7 @@ def checkout(request):
     context = {"title":"Checkout", "items":items, "order":order}
     return render(request, 'user/checkout.html',context)
 
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+    print(data)

@@ -174,7 +174,9 @@ class ShippingAddress(models.Model):
     city = models.ForeignKey(Place, on_delete=models.SET_NULL, blank=True, null=True)
     state = models.CharField(max_length=120, null=True, blank=True)
     zipcode = models.CharField(max_length=100, blank=True, null=True)
-    date_added = models.CharField(max_length=120,null=True)
+    email = models.CharField(max_length=100, blank=True, null=True)
+    phone_no = models.CharField(max_length=100, blank=True, null=True)
+    date_added = models.CharField(max_length=120,blank=True,null=True)
 
     def __str__(self):
         return self.customer.full_name + ' | '+self.date_added

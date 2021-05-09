@@ -63,7 +63,9 @@
         </div>
         <div class="container button-tag">
             <div class="row float-right">
+                {%if user.is_authenticated%}
                 <a href="{%url 'foods' slug=items.0.food.provider.position.district_name%}" class="btn btn-info shadow-none keep">Keep Shopping</a>
+                {%endif%}
                 <a href="/checkout" class="btn btn-success shadow-none check">CONTINUE TO CHECKOUT</a>
             </div>
         </div>

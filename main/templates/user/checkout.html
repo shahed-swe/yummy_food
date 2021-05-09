@@ -128,70 +128,45 @@
         <div class="row">
             <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                 <div class="all">
-                    <div>
-                        <section class="2checkout-pay">
-                            <div class="wrapper">
-                                <div class="payment">
-                                    <form id="myCCForm" class="form" method="POST">
-                                        {% csrf_token %}
-                                        <input name="token" type="hidden" value="">
-                                        <div class="card space icon-relative">
-                                            <input type="text" name="card-holder" class="input" placeholder="Card Holder Name">
-                                            <i class="fas fa-user"></i>
-                                        </div>
-                                        <div class="card space icon-relative">
-                                            <input type="text" id="ccNo" name="card-number" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number">
-                                            <i class="far fa-credit-card"></i>
-                                        </div>
-                                        <div class="card-grp space">
-                                            <div class="card-item icon-relative">
-                                                <input type="text" id="expMonth" name="month" class="input" placeholder="MM">
-                                                <i class="far fa-calendar-alt"></i>
-                                            </div>
-                                            <div class="card-item icon-relative">
-                                                <input type="text" id="expYear" name="year" class="input" placeholder="YY">
-                                            </div>
-                                        </div>
-                                        <div class="card space icon-relative">
-                                            <input type="text" id="cvv" name="cvv" class="input" data-mask="000" placeholder="CVV">
-                                            <i class="fas fa-lock"></i>
-                                        </div>
-                                        <input type="hidden" name="total-value" value="{{order.get_cart_total}}">
-                                        <input type="hidden" name="all_item" value="{{order.order_id_list}}">
-                                        <hr>
-                                        <div class="card space icon-relative">
-                                            <input type="text" id="address" name="address" class="input" placeholder="Address">
-                                            <i class="fas fa-home"></i>
-                                        </div>
-                                        <div class="card-grp space">
-                                            <div class="card-item icon-relative">
-                                                <input type="text" id="city" name="city" class="input" placeholder="CITY">
-                                            </div>
-                                            <div class="card-item icon-relative">
-                                                <input type="text" id="state" name="state" class="input" placeholder="STATE">
-                                            </div>
-                                        </div>
-                                        <div class="card-grp space">
-                                            <div class="card-item icon-relative">
-                                                <input type="text" id="zip" name="zip" class="input" placeholder="ZIP CODE">
-                                            </div>
-                                            <div class="card-item icon-relative">
-                                                <input type="text" id="country" name="country" class="input" placeholder="COUNTRY">
-                                            </div>
-                                        </div>
-                                        <div class="card space icon-relative">
-                                            <input type="text" name="email" class="input" placeholder="Email Address">
-                                            <i class="fas fa-at"></i>
-                                        </div>
-                                        <div class="card space icon-relative">
-                                            <input type="text" name="phone" class="input" placeholder="Phone Number">
-                                            <i class="fas fa-address-book"></i>
-                                        </div>
-                                        <input type="submit" class="pay-btn btn-block" value="Pay">
-                                    </form>
+                    <div class="form-wrapper">
+                        <form id="form">
+                            <div id="shipping-info">
+                                <input type="hidden" name="total-value" value="{{order.get_cart_total}}">
+                                <input type="hidden" name="all_item" value="{{order.order_id_list}}">
+                                {%if not user.is_authenticated%}
+                                <div class="card space icon-relative">
+                                    <input type="text" id="name" name="name" class="input" placeholder="Name">
+                                    <i class="fas fa-user"></i>
                                 </div>
+                                {%endif%}
+                                <div class="card space icon-relative">
+                                    <input type="text" id="address" name="address" class="input" placeholder="Address">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="card-grp space">
+                                    <div class="card-item icon-relative">
+                                        <input type="text" id="city" name="city" class="input" placeholder="CITY">
+                                    </div>
+                                    <div class="card-item icon-relative">
+                                        <input type="text" id="state" name="state" class="input" placeholder="STATE">
+                                    </div>
+                                </div>
+                                <div class="card space icon-relative">
+                                    <input type="text" id="zip" name="zip" class="input" placeholder="Zip">
+                                </div>
+                                {%if not user.is_authenticated%}
+                                <div class="card space icon-relative">
+                                    <input type="text" name="email" class="input" placeholder="Email Address">
+                                    <i class="fas fa-at"></i>
+                                </div>
+                                {%endif%}
+                                <div class="card space icon-relative">
+                                    <input type="text" name="phone" class="input" placeholder="Phone Number">
+                                    <i class="fas fa-address-book"></i>
+                                </div>
+                                <input type="submit" class="pay-btn btn-block" id="make-payment" value="Pay">
                             </div>
-                        </section>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -222,3 +197,92 @@
 
 <!-- content stop -->
 {% endblock main_content %}
+{% comment %}  {% endcomment %}
+{%block main_script%}
+    <script>
+        
+    function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken');
+
+
+        var total = '{{order.get_cart_total}}';
+        var form = document.getElementById('form')
+        var username = '{{request.user.username}}'
+        var user = '{{request.user}}'
+        var email = '{{request.user.email}}'
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            // alert("Form Submitted")
+            document.getElementById('form-buttom')
+        })
+        document.getElementById('make-payment').addEventListener('click', function(e){
+            submitFormData();
+        })
+
+        function submitFormData(){
+            console.log("Payment Button Clicked");
+
+            var userFormData = {
+                'name': null,
+                'email':null,
+                'total':total,
+            }
+            var shippingInfo = {
+                'address': null,
+                'city':null,
+                'state':null,
+                'zipcode':null,
+                'phone':null,
+            }
+            if(user != 'AnonymousUser'){
+                userFormData.name = username
+                userFormData.email = email
+                shippingInfo.address = form.address.value
+                shippingInfo.city = form.city.value
+                shippingInfo.state = form.state.value
+                shippingInfo.zipcode = form.zip.value
+                shippingInfo.phone = form.phone.value
+            }else{
+                userFormData.name = form.name.value
+                userFormData.email = form.email.value
+                shippingInfo.address = form.address.value
+                shippingInfo.city = form.city.value
+                shippingInfo.state = form.state.value
+                shippingInfo.zipcode = form.zip.value
+                shippingInfo.phone = form.phone.value
+            }
+            
+            var url = '/process_order/'
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    'Content-Type':'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body.JSON.stringify({'form':userFormData, 'shipping':shippingInfo})
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success',data)
+                alert("Transaction Completed")
+                window.location.href = "{%url 'cart'%}"
+            })
+        }
+
+    </script>
+{%endblock main_script%}

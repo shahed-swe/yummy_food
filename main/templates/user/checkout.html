@@ -1,0 +1,224 @@
+<!-- extending base html -->
+{%extends 'base.html'%}
+<!-- base template extended -->
+<!-- loading static -->
+{%load static%}
+<!-- static files has been loaded -->
+{% block main_content %}
+<!-- main block starts here -->
+<!-- content starts -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+<style>
+    .checkout {
+        font-family: "Red Hat Display", sans-serif;
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }
+    
+    #image-take {
+        height: 80px;
+        width: 120px;
+        border-radius: 5px;
+    }
+    
+    .products-list {
+        margin: 10px 10px 10px 10px;
+    }
+    
+    .item-detail {
+        padding-left: 5px;
+    }
+    
+    .input {
+        padding: 13px 0px 13px 25px;
+        width: 100%;
+        text-align: center;
+        border: 2px solid #dddddd;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        word-spacing: 3px;
+        outline: none;
+        font-size: 16px;
+        color: #555555;
+    }
+    
+    .card-grp {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .card-item {
+        width: 48%;
+    }
+    
+    .space {
+        margin-bottom: 20px;
+    }
+    
+    .icon-relative {
+        position: relative;
+    }
+    
+    .icon-relative .fas,
+    .icon-relative .far {
+        position: absolute;
+        bottom: 12px;
+        left: 15px;
+        font-size: 20px;
+        color: #555555;
+    }
+    
+    .pay-btn {
+        margin-top: 40px;
+        background: #2196F3;
+        padding: 12px;
+        text-align: center;
+        color: #f8f8f8;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .payment-logo {
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 100px;
+        background: #f8f8f8;
+        border-radius: 50%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        line-height: 85px;
+    }
+    
+    .payment-logo:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 90px;
+        height: 90px;
+        background: #2196F3;
+        border-radius: 50%;
+    }
+    
+    .payment-logo p {
+        position: relative;
+        color: #f8f8f8;
+        font-family: 'Baloo Bhaijaan', cursive;
+        font-size: 58px;
+    }
+    
+    @media screen and (max-width: 420px) {
+        .card-grp {
+            flex-direction: column;
+        }
+        .card-item {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .btn {
+            margin-top: 20px;
+        }
+    }
+</style>
+<section class="checkout">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                <div class="all">
+                    <div>
+                        <section class="2checkout-pay">
+                            <div class="wrapper">
+                                <div class="payment">
+                                    <form id="myCCForm" class="form" method="POST">
+                                        {% csrf_token %}
+                                        <input name="token" type="hidden" value="">
+                                        <div class="card space icon-relative">
+                                            <input type="text" name="card-holder" class="input" placeholder="Card Holder Name">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="card space icon-relative">
+                                            <input type="text" id="ccNo" name="card-number" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number">
+                                            <i class="far fa-credit-card"></i>
+                                        </div>
+                                        <div class="card-grp space">
+                                            <div class="card-item icon-relative">
+                                                <input type="text" id="expMonth" name="month" class="input" placeholder="MM">
+                                                <i class="far fa-calendar-alt"></i>
+                                            </div>
+                                            <div class="card-item icon-relative">
+                                                <input type="text" id="expYear" name="year" class="input" placeholder="YY">
+                                            </div>
+                                        </div>
+                                        <div class="card space icon-relative">
+                                            <input type="text" id="cvv" name="cvv" class="input" data-mask="000" placeholder="CVV">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                        <input type="hidden" name="total-value" value="{{order.get_cart_total}}">
+                                        <input type="hidden" name="all_item" value="{{order.order_id_list}}">
+                                        <hr>
+                                        <div class="card space icon-relative">
+                                            <input type="text" id="address" name="address" class="input" placeholder="Address">
+                                            <i class="fas fa-home"></i>
+                                        </div>
+                                        <div class="card-grp space">
+                                            <div class="card-item icon-relative">
+                                                <input type="text" id="city" name="city" class="input" placeholder="CITY">
+                                            </div>
+                                            <div class="card-item icon-relative">
+                                                <input type="text" id="state" name="state" class="input" placeholder="STATE">
+                                            </div>
+                                        </div>
+                                        <div class="card-grp space">
+                                            <div class="card-item icon-relative">
+                                                <input type="text" id="zip" name="zip" class="input" placeholder="ZIP CODE">
+                                            </div>
+                                            <div class="card-item icon-relative">
+                                                <input type="text" id="country" name="country" class="input" placeholder="COUNTRY">
+                                            </div>
+                                        </div>
+                                        <div class="card space icon-relative">
+                                            <input type="text" name="email" class="input" placeholder="Email Address">
+                                            <i class="fas fa-at"></i>
+                                        </div>
+                                        <div class="card space icon-relative">
+                                            <input type="text" name="phone" class="input" placeholder="Phone Number">
+                                            <i class="fas fa-address-book"></i>
+                                        </div>
+                                        <input type="submit" class="pay-btn btn-block" value="Pay">
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                <div class="row new-sec">
+                    {% for item in items%}
+                    <div class="col-12 col-lg-8 col-md-8 col-sm-10 products-list">
+                        <!-- if -->
+                        <img class="img-fluid float-left" id="image-take" src="{{item.food.image_one.url}}" alt="">
+                        <!-- else -->
+                        <div class="float-left item-detail">
+                            <p class=""> <span style="font-size: 16px;">{{item.food.name}}</span></p>
+                            $<span id="price">{{item.food.price}}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                <hr>
+                <div class="sub-total float-right">
+                    <h6>SUBTOTAL</h4>
+                        <h5 class="float-right">$<span id="order-price">{{order.get_cart_total}}</span></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- content stop -->
+{% endblock main_content %}

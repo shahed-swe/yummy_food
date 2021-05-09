@@ -4,10 +4,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .models import *
 import json
+from .utils import cartData
+
 # Create your views here.
 def home(request):
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+
     place = Place.objects.all()
-    context = {"title": "Home | Yummy Food", "place":place}
+    context = {"title": "Home | Yummy Food",
+               "place": place, "items": items, "order": order}
     return render(request, 'user/home.html',context)
 
 def handler404(request, exception, template_name="404.html"):
@@ -57,7 +64,10 @@ def mylogin(request):
                 return redirect('/')
         else:
             return redirect('/login')
-    context = {"title":"Login"}
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+    context = {"title":"Login","order":order,"items":items}
     return render(request, 'login.html', context)
 
 def mylogout(request):
@@ -68,6 +78,10 @@ def userprofile(request):
     return HttpResponse("{} How are you?".format(request.user.username))
 
 def foods(request, slug):
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+
     place = Place.objects.filter(district_name=slug)
     resturants = ResturantUser.objects.filter(position=place[0].pk)
     foods = []
@@ -79,10 +93,15 @@ def foods(request, slug):
         for j in i:
             if j.category.category_name not in categories:
                 categories.append(j.category.category_name)
-    context = {"title":"Foods","slug":slug,"foods":foods,"resturants":resturants,"categories":categories}
+    context = {"title":"Foods","slug":slug,"foods":foods,"resturants":resturants,"categories":categories,"items":items, "order":order}
     return render(request, 'user/food_list.html', context)
 
 def resturant_registration(request):
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+
+
     place = Place.objects.all()
     context = {"title": "Registration | Yummy Foods", 'place': place}
     if request.user.is_authenticated and request.user.is_customer:
@@ -151,3 +170,22 @@ def update_item(request):
         orderItem.delete()
         response = "Item has deleted Successfully"
     return JsonResponse(response, safe=False)
+
+
+def cart(request):
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+
+    context = {"title":"Food Cart", "items":items, "order":order}
+    return render(request, 'user/cart.html',context)
+
+
+def checkout(request):
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+
+    context = {"title":"Checkout", "items":items, "order":order}
+    return render(request, 'user/checkout.html',context)
+

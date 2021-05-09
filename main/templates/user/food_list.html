@@ -157,16 +157,28 @@
     }
     var csrftoken = getToken('csrftoken');
 
+
+    function getCookie(name) {
+        var cookieArr = document.cookie.split(";");
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+            if (name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+
+    var cart = JSON.parse(getCookie('cart'));
+
+    if(cart == undefined){
+        cart = {};
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+    }
     $(function() {
         $('.swal').on('click', function() {
-            console.log(user)
-            if (user == "AnonymousUser") {
-                $.toaster({
-                    message: 'you are not logged in yet',
-                    title: 'Hello' + ' ' + user,
-                    priority: 'danger'
-                });
-            } else if (status == "False") {
+            // console.log(user)
+            if (status == "False") {
                 $.toaster({
                     message: "Admin Can't Shop From Here",
                     title: 'Hello' + ' ' + user,
@@ -174,9 +186,9 @@
                 });
             }
         })
-    })
+    });
 
-    var updatebtn = document.getElementsByClassName('update-cart')
+    var updatebtn = document.getElementsByClassName('update-cart');
 
     for (let i = 0; i < updatebtn.length; i++) {
         updatebtn[i].addEventListener('click', function() {
@@ -186,16 +198,38 @@
 
             if (status == "True") {
                 updateUserOrder(prodId, action);
-                $.toaster({
-                    message: 'Item has been Added',
-                    title: 'Hello' + ' ' + user,
-                    priority: 'success'
-                })
-            } else {
+
+            }else if(user == 'AnonymousUser'){
+                addCookie(prodId, action);
+            }
+            else {
                 // console.log("You are not suppose to be here")
             }
         })
     }
+
+    function addCookie(productId, action){
+        // console.log(productId, action)
+        if(action == 'add'){
+            if(cart[productId] == undefined){
+                cart[productId] = {'quantity':1}
+            }else{
+                cart[productId]['quantity'] += 1;
+            }
+        }
+        if(action == 'remove'){
+            cart[productId]['quantity'] -= 1;
+            if(cart[productId]['quantity'] <= 0){
+                // console.log("remove item");
+                delete cart[productId];
+            }
+        }
+        console.log('Cart:',cart)
+        document.cookie = 'cart=' + JSON.stringify(cart)+";domain=;path=/"
+        location.reload()
+    }
+
+
 
     function updateUserOrder(productId, action) {
         var url = '/update_item/';
@@ -214,7 +248,15 @@
                 return response.json()
             })
             .then((data) => {
-                console.log(data)
+                $.toaster({
+                    message: data,
+                    title: 'Hello' + ' ' + user,
+                    priority: 'success'
+                })
+                var num = document.getElementById('cart-number').innerHTML;
+                var new_val = parseInt(num, 10);
+                new_val++;
+                document.getElementById('cart-number').innerHTML = new_val.toString();
             })
     }
 </script>

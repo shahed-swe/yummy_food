@@ -1,0 +1,125 @@
+    .cart-prevent {
+        padding: 70px 0 40px 0;
+    }
+    
+    .cart-prevent h1 {
+        padding-top: 63px;
+        font-family: "Red Hat Display", sans-serif;
+        font-weight: 700;
+        font-size: 74px;
+        color: black;
+    }
+    
+    .cart-prevent p {
+        font-family: "Red Hat Text", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        color: black;
+    }
+    
+    .product-section {
+        padding-top: 40px;
+    }
+    
+    .product-section h4 {
+        font-family: "Red Hat Display", sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        color: #1a1e23;
+    }
+    
+    hr {
+        border: 0.001rem solid #c0c0c0;
+    }
+    
+    #price {
+        font-family: "Red Hat Display", sans-serif;
+        font-style: normal;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    
+    .product-section .new-sec img {
+        height: 200px;
+        width: 320px;
+        border-radius: 0.5rem;
+        padding-bottom: 20px;
+    }
+    
+    .product-section .item-detail {
+        padding-top: 75px;
+        padding-left: 20px
+    }
+    
+    .product-section .item-price {
+        padding-top: 75px;
+        padding-left: 20px;
+    }
+    
+    .product-section .item-delete {
+        padding-top: 75px;
+        padding-left: 20px
+    }
+    
+    .sub-total {
+        font-family: "Red Hat Text", sans-serif;
+    }
+    
+    .sub-total h3 {
+        margin-top: 15px;
+        font-weight: 300;
+    }
+    
+    .button-tag {
+        margin-top: 100px;
+        margin-bottom: 162px;
+    }
+    
+    .btn {
+        padding: 13px 11px !important;
+    }
+    
+    .button-tag .btn {
+        margin: -25px 1px 0px 9px;
+        border-radius: 1.5rem;
+        height: 1rem;
+        padding-top: 11px;
+    }
+    
+    .button-tag .check {
+        margin-right: 7px;
+    }
+    
+    @media only screen and (max-width: 550px) {
+        .product-section .new-sec img {
+            height: 340px;
+            width: 540px;
+        }
+        .product-section .new-row {
+            display: none;
+        }
+        .product-section .item-detail {
+            padding-top: 0px;
+            padding-left: 0px;
+        }
+        .product-section .item-price {
+            padding-top: 0;
+            padding-left: 17px;
+        }
+        .product-section .item-delete {
+            margin-top: -102px;
+            padding-left: 384px;
+        }
+        .oi-talk {
+            display: none;
+        }
+        .ol-product {
+            padding-bottom: 40px;
+        }
+        .button-tag .btn {
+            float: left;
+            margin: 10px 10px 10px 10px;
+            padding-top: 11px;
+        }
+    }

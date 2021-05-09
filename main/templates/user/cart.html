@@ -1,0 +1,191 @@
+<!-- extending base html -->
+{%extends 'base.html'%}
+<!-- base template extended -->
+<!-- loading static -->
+{%load static%}
+<!-- static files has been loaded -->
+{% block main_content %}
+<!-- main block starts here -->
+<!-- content starts -->
+<link rel="stylesheet" href="{%static 'front/css/cart.css'%}">
+<section class="cart-prevent">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-sm-12">
+                <h1>Food</h1>
+                <p>"People who love to eat are always the best people." "To eat is a necessity, but to eat intelligently is an art." "We all eat, an it would be a sad waste of opportunity to eat badly." "If you really want to make a friend, go to someone's
+                    house and eat with him...the people who give you their food give you their heart."</p>
+            </div>
+            <div class="col-12 col-lg-6 col-sm-12">
+                <img class="img-fluid w-75" src="{%static 'front/img/multisection.png'%}" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="product-section">
+    <div class="container">
+        <div class="row new-row">
+            <div class="col-12 col-lg-8 col-md-8 col-sm-10">
+                <h4>Product</h4>
+            </div>
+            <div class="col-12 col-lg-2 col-md-2 col-sm-10">
+                <h4>Quantity</h4>
+            </div>
+            <div class="col-12 col-lg-2 col-md-2 col-sm-10"></div>
+        </div>
+        <hr class="oi-talk">
+        <div class="row new-sec">
+            {% for item in items%}
+            <div class="col-12 col-lg-8 col-md-8 col-sm-10 ">
+                <!-- if -->
+                {%if item.food.image_one.url%}
+                <img class="img-fluid float-left" id="image-take" src="{{item.food.image_one.url}}" alt="">
+                <!-- else -->
+                {%else%}
+                <img class="img-fluid float-left" id="image-take" src="" alt="">
+                <!-- end -->
+                {%endif%}
+                <div class="float-left item-detail">
+                    <h4 class="">{{item.food.name}}</h4>
+                    <p class=""><span style="font-size: large;">Variation:</span> <span style="font-size: 16px;">{{item.food.category.category_name}}</span></p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-2 col-md-2 col-sm-10 item-price">
+                <span id="price">{{item.quantity}}</span>
+            </div>
+            <div class="col-12 col-lg-2 col-md-2 col-sm-10 item-delete ol-product update-cart" data-product="{{item.food.id}}" data-action="remove">X</div>
+            {%endfor%}
+        </div>
+        <hr>
+        <div class="sub-total float-right">
+            <h4>SUBTOTAL</h4>
+            <h3 class="float-right">$<span id="order-price">{{order.get_cart_total}}</span></h3>
+        </div>
+        <div class="container button-tag">
+            <div class="row float-right">
+                <a href="{%url 'foods' slug=items.0.food.provider.position.district_name%}" class="btn btn-info shadow-none keep">Keep Shopping</a>
+                <a href="/checkout" class="btn btn-success shadow-none check">CONTINUE TO CHECKOUT</a>
+            </div>
+        </div>
+</section>
+<!-- content stop -->
+{% endblock main_content %}
+<!-- main block stops here -->
+{% block main_script %}
+<script src="http://scottoffen.github.io/jquery.toaster/jquery.toaster.js"></script>
+<script type="text/javascript">
+    var user = '{{request.user}}';
+    var status = '{{request.user.is_customer}}';
+    var item = '{{order.get_cart_items}}';
+    if (item > 0) {
+        $('.check').css('display', '')
+    } else {
+        $('.check').css('display', 'none')
+    }
+
+    function getToken(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getToken('csrftoken');
+
+    var updatebtn = document.getElementsByClassName('update-cart')
+    for (let i = 0; i < updatebtn.length; i++) {
+        updatebtn[i].addEventListener('click', function() {
+            event.preventDefault();
+            // console.log(updatebtn[i])
+            var prodId = this.dataset.product;
+            var action = this.dataset.action;
+
+            if (status == "True") {
+                updateUserOrder(prodId, action);
+
+            }else if(user == 'AnonymousUser'){
+                addCookie(prodId, action);
+            }
+            else {
+                // console.log("You are not suppose to be here")
+            }
+        })
+    }
+
+    function updateUserOrder(productId, action) {
+        var url = '/update_item/';
+        fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({
+                    'productId': productId,
+                    'action': action
+                })
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                $.toaster({
+                    message: data,
+                    title: 'Hello' + ' ' + user,
+                    priority: 'danger'
+                })
+                location.reload()
+            })
+    }
+
+    var cart = JSON.parse(getCookie('cart'));
+
+    function getCookie(name) {
+        var cookieArr = document.cookie.split(";");
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+            if (name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+
+    var cart = JSON.parse(getCookie('cart'));
+
+    if(cart == undefined){
+        cart = {};
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/";
+    }
+    function addCookie(productId, action){
+        // console.log(productId, action)
+        if(action == 'add'){
+            if(cart[productId] == undefined){
+                cart[productId] = {'quantity':1}
+            }else{
+                cart[productId]['quantity'] += 1;
+            }
+        }
+        if(action == 'remove'){
+            cart[productId]['quantity'] -= 1;
+            if(cart[productId]['quantity'] <= 0){
+                // console.log("remove item");
+                delete cart[productId];
+            }
+        }
+        console.log('Cart:',cart)
+        document.cookie = 'cart=' + JSON.stringify(cart)+";domain=;path=/"
+        location.reload()
+    }
+</script>
+<!-- end of javascript code -->
+{% endblock main_script %}
+<!-- scripts block stop here -->

@@ -43,7 +43,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         {%if user.is_authenticated%}
-                                        <li><a href="#menu.html"><i class="fa fa-cart-arrow-down"></i><span class="cart-item"><span class="item-number">1</span></span></a></li>
+                                        <li><a href="{%url 'cart'%}"><i class="fa fa-cart-arrow-down"></i><span class="cart-item"><span class="item-number" id="cart-number">{{order.get_cart_items}}</span></span></a></li>
                                         <li><a href="#blog.html">{{user.first_name}}</a>
                                             <ul class="submenu">
                                                 <li><a href="{%url 'userprofile'%}">Profile</a></li>
@@ -53,6 +53,7 @@
                                         </li>
 
                                         {%else%}
+                                        <li><a href="{%url 'cart'%}"><i class="fa fa-cart-arrow-down"></i><span class="cart-item"><span class="item-number" id="cart-number">{{order.get_cart_items}}</span></span></a></li>
                                         <li><a href="{%url 'mylogin'%}"><span class="fa fa-user-circle"></span> Login / Registration</a></li>
                                         {%endif%}
                                     </ul>

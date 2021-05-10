@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .models import *
 import json
-from .utils import cartData
+from .utils import cartData, cookieCart,guestOrder
 import datetime
 # Create your views here.
 def home(request):
@@ -176,12 +176,12 @@ def cart(request):
     data = cartData(request)
     order = data['order']
     items = data['items']
-
     context = {"title":"Food Cart", "items":items, "order":order}
     return render(request, 'user/cart.html',context)
 
 
 def checkout(request):
+
     data = cartData(request)
     order = data['order']
     items = data['items']
@@ -191,5 +191,43 @@ def checkout(request):
 
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
+    print(int(transaction_id))
     data = json.loads(request.body)
-    print(data)
+    if request.user.is_authenticated:
+        customer = Customer.objects.get(user=request.user.pk)
+        order, _ = Order.objects.get_or_create(customer=customer, complete=False)
+    else:
+        customer, order = guestOrder(request,data)
+
+    total = int(data['form']['total'])
+    order.transaction_id = int(transaction_id)
+
+    if total == order.get_cart_total:
+        order.complete = True
+    order.save()
+    # print(customer.user.email)
+    shipping = ShippingAddress(
+        customer=customer,
+        order=order,
+        name=customer.full_name,
+        address=data['shipping']['address'],
+        city=data['shipping']['city'],
+        state=data['shipping']['state'],
+        zipcode=data['shipping']['zipcode'],
+        phone_no=data['shipping']['phone'],
+        email=customer.user.email,
+    )
+    shipping.save()
+    response = "Transaction Successfull"
+    return JsonResponse(response, safe=False)
+
+
+def track_order(request):
+    if request.user.is_authenticated and request.user.is_customer:
+        customer = Customer.objects.get(user=request.user)
+        order = Order.objects.filter(customer=customer)
+        
+        context = {"title":"Track Order","orders":order}
+        return render(request, 'user/track_order.html',context)
+    else:
+        return redirect('/')

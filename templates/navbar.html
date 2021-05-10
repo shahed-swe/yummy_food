@@ -14,7 +14,7 @@
     .item-number {
         position: relative;
         top: -1px;
-        left: 8px;
+        left: 5px;
         color: white;
     }
     
@@ -44,13 +44,15 @@
                                     <ul id="navigation">
                                         {%if user.is_authenticated%}
                                         <li><a href="{%url 'cart'%}"><i class="fa fa-cart-arrow-down"></i><span class="cart-item"><span class="item-number" id="cart-number">{{order.get_cart_items}}</span></span></a></li>
-                                        <li><a href="#blog.html">{{user.first_name}}</a>
+                                        <li><a href="{%url 'track_order'%}"> Track Order</a></li>
+                                        <li><a href="#blog.html">{{user.username | title}}</a>
                                             <ul class="submenu">
                                                 <li><a href="{%url 'userprofile'%}">Profile</a></li>
                                                 <li><a href="#blog_details.html">Edit Profile</a></li>
                                                 <li><a href="{%url 'mylogout'%}">Logout</a></li>
                                             </ul>
                                         </li>
+
 
                                         {%else%}
                                         <li><a href="{%url 'cart'%}"><i class="fa fa-cart-arrow-down"></i><span class="cart-item"><span class="item-number" id="cart-number">{{order.get_cart_items}}</span></span></a></li>

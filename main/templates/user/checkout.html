@@ -132,12 +132,16 @@
                         <form id="form">
                             <div id="shipping-info">
                                 <input type="hidden" name="total-value" value="{{order.get_cart_total}}">
-                                <input type="hidden" name="all_item" value="{{order.order_id_list}}">
-                                {%if not user.is_authenticated%}
+                                <input type="hidden" name="all_item" value="{{order.order_id_list}}"> {%if not user.is_authenticated%}
                                 <div class="card space icon-relative">
                                     <input type="text" id="name" name="name" class="input" placeholder="Name">
                                     <i class="fas fa-user"></i>
                                 </div>
+                                <div class="msg" style="margin-top: -20px;">
+                                    <small style="font-size: small;">*default user name is given name</small><br>
+                                    <small style="font-size: small;">*default password 12345</small>
+                                </div>
+                                <!--  -->
                                 {%endif%}
                                 <div class="card space icon-relative">
                                     <input type="text" id="address" name="address" class="input" placeholder="Address">
@@ -196,11 +200,9 @@
 </section>
 
 <!-- content stop -->
-{% endblock main_content %}
-{% comment %}  {% endcomment %}
-{%block main_script%}
-    <script>
-        
+{% endblock main_content %} {% comment %} {% endcomment %} {%block main_script%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
+<script>
     function getToken(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -219,70 +221,77 @@
     var csrftoken = getToken('csrftoken');
 
 
-        var total = '{{order.get_cart_total}}';
-        var form = document.getElementById('form')
-        var username = '{{request.user.username}}'
-        var user = '{{request.user}}'
-        var email = '{{request.user.email}}'
+    var total = '{{order.get_cart_total}}';
+    var form = document.getElementById('form')
+    var username = '{{request.user.username}}'
+    var user = '{{request.user}}'
+    var email = '{{request.user.email}}'
 
-        form.addEventListener('submit', function(e){
-            e.preventDefault();
-            // alert("Form Submitted")
-            document.getElementById('form-buttom')
-        })
-        document.getElementById('make-payment').addEventListener('click', function(e){
-            submitFormData();
-        })
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // alert("Form Submitted")
+        document.getElementById('form-buttom')
+    })
+    document.getElementById('make-payment').addEventListener('click', function(e) {
+        submitFormData();
+    })
 
-        function submitFormData(){
-            console.log("Payment Button Clicked");
+    function submitFormData() {
+        console.log("Payment Button Clicked");
 
-            var userFormData = {
-                'name': null,
-                'email':null,
-                'total':total,
-            }
-            var shippingInfo = {
-                'address': null,
-                'city':null,
-                'state':null,
-                'zipcode':null,
-                'phone':null,
-            }
-            if(user != 'AnonymousUser'){
-                userFormData.name = username
-                userFormData.email = email
-                shippingInfo.address = form.address.value
-                shippingInfo.city = form.city.value
-                shippingInfo.state = form.state.value
-                shippingInfo.zipcode = form.zip.value
-                shippingInfo.phone = form.phone.value
-            }else{
-                userFormData.name = form.name.value
-                userFormData.email = form.email.value
-                shippingInfo.address = form.address.value
-                shippingInfo.city = form.city.value
-                shippingInfo.state = form.state.value
-                shippingInfo.zipcode = form.zip.value
-                shippingInfo.phone = form.phone.value
-            }
-            
-            var url = '/process_order/'
-            fetch(url, {
-                method: "POST",
+        var userFormData = {
+            'name': null,
+            'email': null,
+            'total': total,
+        }
+        var shippingInfo = {
+            'address': null,
+            'city': null,
+            'state': null,
+            'zipcode': null,
+            'phone': null,
+        }
+        if (user != 'AnonymousUser') {
+            userFormData.name = username
+            userFormData.email = email
+            shippingInfo.address = form.address.value
+            shippingInfo.city = form.city.value
+            shippingInfo.state = form.state.value
+            shippingInfo.zipcode = form.zip.value
+            shippingInfo.phone = form.phone.value
+        } else {
+            userFormData.name = form.name.value
+            userFormData.email = form.email.value
+            shippingInfo.address = form.address.value
+            shippingInfo.city = form.city.value
+            shippingInfo.state = form.state.value
+            shippingInfo.zipcode = form.zip.value
+            shippingInfo.phone = form.phone.value
+        }
+
+        var url = '/process_order/'
+        fetch(url, {
+                method: 'POST',
                 headers: {
-                    'Content-Type':'application/json',
+                    'Content-Type': 'application/json',
                     'X-CSRFToken': csrftoken,
                 },
-                body.JSON.stringify({'form':userFormData, 'shipping':shippingInfo})
+                body: JSON.stringify({
+                    'form': userFormData,
+                    'shipping': shippingInfo
+                })
             })
             .then((response) => response.json())
             .then((data) => {
-                console.log('Success',data)
-                alert("Transaction Completed")
-                window.location.href = "{%url 'cart'%}"
+                console.log('Success', data);
+                swal("Good Job", "Transaction Complete", "success", {
+                    button: "Close",
+                });
+                cart = {}
+                document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+                window.location.href = "{%url 'home'%}"
+                    // window.location.reload();
             })
-        }
-
-    </script>
+    }
+</script>
 {%endblock main_script%}

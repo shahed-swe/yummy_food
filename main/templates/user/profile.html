@@ -1,0 +1,272 @@
+{%extends 'base.html'%}
+<!--  -->
+{%load static%}
+<!--  -->
+{%block main_content%}
+<!--  -->
+<style>
+    .emp-profile {
+        padding: 3%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 0.5rem;
+        background: #fff;
+    }
+    
+    .profile-img {
+        text-align: center;
+    }
+    
+    .profile-img img {
+        width: 70%;
+        height: 100%;
+    }
+    
+    .profile-img .file {
+        position: relative;
+        overflow: hidden;
+        margin-top: -20%;
+        width: 70%;
+        border: none;
+        border-radius: 0;
+        font-size: 15px;
+        background: #212529b8;
+    }
+    
+    .profile-img .file input {
+        position: absolute;
+        opacity: 0;
+        right: 0;
+        top: 0;
+    }
+    
+    .profile-head h5 {
+        color: #333;
+    }
+    
+    .profile-head h6 {
+        color: #0062cc;
+    }
+    
+    .profile-edit-btn {
+        border: none;
+        border-radius: 1.5rem;
+        width: 70%;
+        padding: 2%;
+        font-weight: 600;
+        color: #6c757d;
+        cursor: pointer;
+    }
+    
+    .proile-rating {
+        font-size: 12px;
+        color: #818182;
+        margin-top: 5%;
+    }
+    
+    .proile-rating span {
+        color: #495057;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    
+    .profile-head .nav-tabs {
+        margin-bottom: 5%;
+    }
+    
+    .profile-head .nav-tabs .nav-link {
+        font-weight: 600;
+        border: none;
+    }
+    
+    .profile-head .nav-tabs .nav-link.active {
+        border: none;
+        border-bottom: 2px solid #0062cc;
+    }
+    
+    .profile-work {
+        padding: 14%;
+        margin-top: -15%;
+    }
+    
+    .profile-work p {
+        font-size: 12px;
+        color: #818182;
+        font-weight: 600;
+        margin-top: 10%;
+    }
+    
+    .profile-work a {
+        text-decoration: none;
+        color: #495057;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .profile-work ul {
+        list-style: none;
+    }
+    
+    .profile-tab label {
+        font-weight: 600;
+    }
+    
+    .profile-tab p {
+        font-weight: 600;
+        color: #0062cc;
+    }
+</style>
+<div class="container emp-profile">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="profile-head">
+                <h5>
+                    {{user.first_name | title}} {{user.last_name | title}}
+                </h5>
+                <h6>
+                    {%if user.is_customer%}
+                    <!--  -->
+                    Customer
+                    <!--  -->
+                    {%else%}
+                    <!--  -->
+                    Resturent User
+                    <!--  -->
+                    {%endif%}
+                </h6>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                    </li>
+                    {%if user.is_resturent%}
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                    </li>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="profile-edit-btn" name="btnAddMore" data-toggle="modal" data-target="#exampleModal">Edit Pass</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="tab-content profile-tab" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>User Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.username}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.first_name | title}} {{user.last_name | title}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{user.email}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Phone</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{otheruser.phone_no}}</p>
+                        </div>
+                    </div>
+                    {%if user.is_resturent%}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Profession</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Resturant User</p>
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+                {%if user.is_resturent%}
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Resturant Name</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{otheruser.resturant_name}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Opening Hour</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>10AM - 8PM</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Total Foods Providing</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{food}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Resturant Place</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{otheruser.position.district_name}}</p>
+                        </div>
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    {%csrf_token%}
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="password1" name="password1">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="password2" name="password2">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  -->
+{%endblock main_content%}

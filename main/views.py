@@ -49,7 +49,10 @@ def myregistration(request):
             customer.save()
         else:
             return redirect('/registration')
-    return render(request, 'user/registration.html', {"title":"Registration"})
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+    return render(request, 'user/registration.html', {"title": "Registration", "order": order, "items": items})
 
 def mylogin(request):
     if request.user.is_authenticated:
@@ -75,7 +78,27 @@ def mylogout(request):
     return redirect('/login')
 
 def userprofile(request):
-    return HttpResponse("{} How are you?".format(request.user.username))
+    data = cartData(request)
+    order = data['order']
+    items = data['items']
+    if request.user.is_customer and request.user.is_authenticated:
+        user = Customer.object.get(pk=request.user.pk)
+    elif request.user.is_resturent and request.user.is_authenticated:
+        user = ResturantUser.objects.get(pk=request.user.pk)
+        food = FoodName.objects.filter(provider=user)
+    print(user)
+    if request.method == "POST":
+        password = request.POST.get('password1')
+        conf_pass = request.POST.get('password2')
+        if password == conf_pass:
+            user = User.objects.get(username=request.user.username)
+            user.set_password(password)
+            user.save()
+            return redirect('/')
+        else:
+            return HttpResponse("<h1>Password Doesn't Match</h1><a href='/profile'>Back</a>")
+    context = {"title": f"Profile | {request.user.username.title()}", "order": order, "items": items,"otheruser":user,"food":len(food)}
+    return render(request, 'user/profile.html', context)
 
 def foods(request, slug):
     data = cartData(request)
@@ -106,7 +129,7 @@ def resturant_registration(request):
     context = {"title": "Registration | Yummy Foods", 'place': place}
     if request.user.is_authenticated and request.user.is_customer:
         if request.method == "POST":
-            User.objects.filter(pk=request.user.pk).update(is_resturent=True, is_customer=False)
+            User.objects.filter(pk=request.user.pk).update(is_resturent=True, is_customer=False,is_staff=True)
             user = request.user
             resturent = ResturantUser(
                 user = user,
@@ -134,6 +157,7 @@ def resturant_registration(request):
                     email = request.POST.get('email'),
                     is_resturent = True,
                     is_active = True,
+                    is_staff = True,
                 )
                 user.set_password(request.POST.get('password1'))
                 user.save()

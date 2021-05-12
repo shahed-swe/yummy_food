@@ -82,10 +82,12 @@ def userprofile(request):
     order = data['order']
     items = data['items']
     if request.user.is_customer and request.user.is_authenticated:
-        user = Customer.object.get(pk=request.user.pk)
+        user = Customer.objects.get(pk=request.user.pk)
+        context = {"title": f"Profile | {request.user.username.title()}", "order": order, "items": items,"otheruser":user}
     elif request.user.is_resturent and request.user.is_authenticated:
         user = ResturantUser.objects.get(pk=request.user.pk)
         food = FoodName.objects.filter(provider=user)
+        context = {"title": f"Profile | {request.user.username.title()}","order": order, "items": items, "otheruser": user, "food": len(food)}
     print(user)
     if request.method == "POST":
         password = request.POST.get('password1')
@@ -97,7 +99,7 @@ def userprofile(request):
             return redirect('/')
         else:
             return HttpResponse("<h1>Password Doesn't Match</h1><a href='/profile'>Back</a>")
-    context = {"title": f"Profile | {request.user.username.title()}", "order": order, "items": items,"otheruser":user,"food":len(food)}
+    
     return render(request, 'user/profile.html', context)
 
 def foods(request, slug):

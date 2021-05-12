@@ -88,6 +88,9 @@ def userprofile(request):
         user = ResturantUser.objects.get(pk=request.user.pk)
         food = FoodName.objects.filter(provider=user)
         context = {"title": f"Profile | {request.user.username.title()}","order": order, "items": items, "otheruser": user, "food": len(food)}
+    else:
+        user = request.user
+        context = {"title": f"Profile | {request.user.username.title()}", "order": order, "items": items,"otheruser":user}
     print(user)
     if request.method == "POST":
         password = request.POST.get('password1')

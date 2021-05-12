@@ -289,8 +289,10 @@
                 });
                 cart = {}
                 document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
-                window.location.href = "{%url 'home'%}"
-                    // window.location.reload();
+                setTimeout(() => {
+                    window.location.href = "{%url 'home'%}"
+                }, 1000);
+                // window.location.reload();
             })
     }
 </script>
